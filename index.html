@@ -219,6 +219,20 @@
     background:radial-gradient(55% 55% at 12% 15%, var(--jewel-dim), transparent 68%);
     pointer-events:none;
   }
+  .showcase-item::after{
+    content:attr(data-num);
+    position:absolute;
+    right:clamp(16px,4vw,56px);
+    bottom:clamp(8px,2vw,28px);
+    font-family:var(--display);
+    font-size:clamp(90px,15vw,220px);
+    line-height:1;
+    color:transparent;
+    -webkit-text-stroke:1px var(--charcoal-line);
+    z-index:0;
+    pointer-events:none;
+    user-select:none;
+  }
   .showcase-item[data-jewel="emerald"]{ --jewel:var(--emerald); --jewel-dim:var(--emerald-dim); }
   .showcase-item[data-jewel="sapphire"]{ --jewel:var(--sapphire); --jewel-dim:var(--sapphire-dim); }
   .showcase-item[data-jewel="amethyst"]{ --jewel:var(--amethyst); --jewel-dim:var(--amethyst-dim); }
@@ -236,28 +250,53 @@
   .showcase-specs dt{ font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--jewel); margin-bottom:5px; transition:color .4s var(--ease-settle); }
   .showcase-specs dd{ margin:0; font-size:14px; color:var(--off-white-soft); }
 
-  .disc-wrap{ position:relative; z-index:1; display:flex; align-items:center; justify-content:center; perspective:1300px; }
-  .disc{
-    width:min(64vh,520px);
-    aspect-ratio:1/1;
-    transform:rotateX(56deg) rotateZ(var(--rot));
-    transform-style:preserve-3d;
-    filter:drop-shadow(0 40px 50px rgba(0,0,0,.55));
-    transition:transform .6s var(--ease-settle);
+  .frame-wrap{ position:relative; z-index:1; display:flex; align-items:center; justify-content:center; }
+  .product-frame{
+    position:relative;
+    width:100%;
+    max-width:440px;
+    aspect-ratio:4/5;
+    overflow:hidden;
+    background:var(--charcoal);
+    box-shadow:0 60px 90px -30px rgba(0,0,0,.65), 0 0 0 1px var(--charcoal-line);
   }
-  html.js-ready .showcase-item .disc{
-    transform:rotateX(56deg) rotateZ(var(--rot)) translateY(40px);
+  .product-frame::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(120% 90% at 50% 0%, var(--jewel-dim), transparent 65%);
+    mix-blend-mode:screen;
+    opacity:.85;
+    z-index:1;
+    pointer-events:none;
+    transition:background .5s var(--ease-settle);
+  }
+  .product-frame::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 55%, rgba(0,0,0,.5) 100%);
+    z-index:1;
+    pointer-events:none;
+  }
+  .product-frame img{
+    width:100%; height:100%;
+    object-fit:cover; object-position:center top;
+    display:block;
+    filter:saturate(1.05) contrast(1.04);
+    transition:transform 1.2s var(--ease-settle);
+  }
+  .product-frame:hover img{ transform:scale(1.045); }
+  html.js-ready .showcase-item .product-frame{
     opacity:0;
-    transition:transform .9s var(--ease-settle), opacity .9s var(--ease-settle);
+    transform:translateY(48px) scale(.97);
+    transition:transform 1.1s var(--ease-settle), opacity 1.1s var(--ease-settle);
   }
-  html.js-ready .showcase-item.is-visible .disc{
-    transform:rotateX(56deg) rotateZ(var(--rot)) translateY(0);
+  html.js-ready .showcase-item.is-visible .product-frame{
     opacity:1;
+    transform:translateY(0) scale(1);
   }
   @media (prefers-reduced-motion: reduce){
-    html.js-ready .showcase-item .disc{ opacity:1 !important; transform:rotateX(56deg) rotateZ(var(--rot)) !important; }
+    html.js-ready .showcase-item .product-frame{ opacity:1 !important; transform:none !important; }
   }
-  .disc svg{ width:100%; height:100%; }
 
   .showcase-dots{
     position:absolute; right:20px; top:50%; transform:translateY(-50%);
@@ -278,10 +317,28 @@
     align-items:center;
   }
   .spotlight-media{
+    position:relative;
     aspect-ratio:4/5;
-    background:linear-gradient(155deg, var(--charcoal) 0%, var(--ink) 55%, var(--jewel-dim) 130%);
+    overflow:hidden;
     border:1px solid var(--charcoal-line);
+    background:var(--charcoal);
+    box-shadow:0 60px 90px -30px rgba(0,0,0,.6);
+  }
+  .spotlight-media::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(120% 90% at 50% 100%, var(--jewel-dim), transparent 65%);
+    mix-blend-mode:screen;
+    opacity:.85;
+    z-index:1;
+    pointer-events:none;
     transition:background .5s var(--ease-settle);
+  }
+  .spotlight-media img{
+    width:100%; height:100%;
+    object-fit:cover; object-position:center top;
+    display:block;
+    filter:saturate(1.05) contrast(1.04);
   }
   .spotlight h2{ font-family:var(--display); font-size:clamp(28px,4vw,46px); text-transform:uppercase; margin-bottom:8px; }
   .spotlight-tag{ font-size:14px; color:var(--stone); margin-bottom:30px; }
@@ -412,7 +469,7 @@
     transition:width .3s var(--ease-settle), height .3s var(--ease-settle), border-color .3s ease, background-color .3s ease;
   }
   .cursor-ring.is-active{ width:78px; height:78px; background:rgba(255,255,255,.06); border-color:var(--jewel); }
-  body.has-custom-cursor, body.has-custom-cursor a, body.has-custom-cursor button, body.has-custom-cursor .disc{ cursor:none; }
+  body.has-custom-cursor, body.has-custom-cursor a, body.has-custom-cursor button, body.has-custom-cursor .product-frame{ cursor:none; }
   .cursor-dot,.cursor-ring{ display:none; }
   body.has-custom-cursor .cursor-dot, body.has-custom-cursor .cursor-ring{ display:flex; }
 
@@ -423,8 +480,9 @@
     .spotlight-grid,.lab-body,.looks-grid{ grid-template-columns:1fr; }
     .showcase-item{ grid-template-columns:1fr; padding-top:96px; }
     .showcase-meta{ order:2; }
-    .disc-wrap{ order:1; }
-    .disc{ width:min(46vh,360px); }
+    .frame-wrap{ order:1; }
+    .product-frame{ max-width:300px; }
+    .showcase-item::after{ font-size:clamp(60px,22vw,110px); }
     .showcase-dots{ display:none; }
   }
   @media (max-width:600px){
@@ -478,153 +536,13 @@
     </div>
   </section>
 
-  <section class="showcase" id="uniform" tabindex="0" role="region" aria-label="Product showcase — scroll to browse the 7-piece uniform">
+  <section class="showcase" id="uniform" tabindex="0" role="region" aria-label="Product showcase — scroll to browse the 5-piece uniform">
     <div class="showcase-dots" id="showcaseDots" aria-hidden="true"></div>
 
     <!-- 01 -->
-    <div class="showcase-item" data-jewel="emerald" style="--rot:-7deg;">
+    <div class="showcase-item" data-jewel="ruby" data-num="01">
       <div class="showcase-meta">
-        <p class="showcase-index">01 / 07</p>
-        <h2 class="showcase-name">Muscle Fit Tee</h2>
-        <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Hero fit / V-shape</dd></div>
-          <div><dt>Fabric</dt><dd>Premium performance jersey</dd></div>
-          <div><dt>Note</dt><dd>The product that defines the uniform</dd></div>
-        </dl>
-      </div>
-      <div class="disc-wrap">
-        <div class="disc" data-cursor>
-          <svg viewBox="0 0 300 300" aria-hidden="true">
-            <defs>
-              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#2A2B2E"/><stop offset="100%" stop-color="#0B0C0E"/>
-              </linearGradient>
-              <path id="p1" d="M 45,150 A 105,105 0 0 1 255,150" fill="none"/>
-            </defs>
-            <circle cx="150" cy="150" r="148" fill="url(#g1)" stroke="rgba(242,240,234,.12)"/>
-            <circle cx="150" cy="150" r="28" fill="#0B0C0E" stroke="rgba(242,240,234,.25)"/>
-            <text font-size="15" letter-spacing="5" fill="#F2F0EA"><textPath href="#p1" startOffset="50%" text-anchor="middle">MUSCLE FIT TEE</textPath></text>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- 02 -->
-    <div class="showcase-item" data-jewel="sapphire" style="--rot:5deg;">
-      <div class="showcase-meta">
-        <p class="showcase-index">02 / 07</p>
-        <h2 class="showcase-name">Oversized Tee</h2>
-        <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Heavyweight / Lifestyle</dd></div>
-          <div><dt>Fabric</dt><dd>Heavyweight cotton blend</dd></div>
-          <div><dt>Note</dt><dd>Off-duty, same standard</dd></div>
-        </dl>
-      </div>
-      <div class="disc-wrap">
-        <div class="disc" data-cursor>
-          <svg viewBox="0 0 300 300" aria-hidden="true">
-            <defs>
-              <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#F2F0EA"/><stop offset="100%" stop-color="#B8B6AE"/>
-              </linearGradient>
-              <path id="p2" d="M 45,150 A 105,105 0 0 1 255,150" fill="none"/>
-            </defs>
-            <circle cx="150" cy="150" r="148" fill="url(#g2)" stroke="rgba(11,12,14,.15)"/>
-            <circle cx="150" cy="150" r="28" fill="#0B0C0E" stroke="rgba(242,240,234,.25)"/>
-            <text font-size="15" letter-spacing="5" fill="#0B0C0E"><textPath href="#p2" startOffset="50%" text-anchor="middle">OVERSIZED TEE</textPath></text>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- 03 -->
-    <div class="showcase-item" data-jewel="ruby" style="--rot:-4deg;">
-      <div class="showcase-meta">
-        <p class="showcase-index">03 / 07</p>
-        <h2 class="showcase-name">Stringer</h2>
-        <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Bodybuilding / Statement</dd></div>
-          <div><dt>Fabric</dt><dd>Ribbed performance knit</dd></div>
-          <div><dt>Note</dt><dd>Limited colorway — attention, on purpose</dd></div>
-        </dl>
-      </div>
-      <div class="disc-wrap">
-        <div class="disc" data-cursor>
-          <svg viewBox="0 0 300 300" aria-hidden="true">
-            <defs>
-              <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#E23B4E"/><stop offset="100%" stop-color="#0B0C0E"/>
-              </linearGradient>
-              <path id="p3" d="M 45,150 A 105,105 0 0 1 255,150" fill="none"/>
-            </defs>
-            <circle cx="150" cy="150" r="148" fill="url(#g3)" stroke="rgba(242,240,234,.12)"/>
-            <circle cx="150" cy="150" r="28" fill="#0B0C0E" stroke="rgba(242,240,234,.25)"/>
-            <text font-size="15" letter-spacing="5" fill="#F2F0EA"><textPath href="#p3" startOffset="50%" text-anchor="middle">STRINGER</textPath></text>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- 04 -->
-    <div class="showcase-item" data-jewel="emerald" style="--rot:6deg;">
-      <div class="showcase-meta">
-        <p class="showcase-index">04 / 07</p>
-        <h2 class="showcase-name">5&Prime; Performance Short</h2>
-        <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Training / Movement</dd></div>
-          <div><dt>Fabric</dt><dd>4-way stretch woven</dd></div>
-          <div><dt>Note</dt><dd>Built for range of motion, not just looks</dd></div>
-        </dl>
-      </div>
-      <div class="disc-wrap">
-        <div class="disc" data-cursor>
-          <svg viewBox="0 0 300 300" aria-hidden="true">
-            <defs>
-              <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#5B5F52"/><stop offset="100%" stop-color="#0B0C0E"/>
-              </linearGradient>
-              <path id="p4" d="M 45,150 A 105,105 0 0 1 255,150" fill="none"/>
-            </defs>
-            <circle cx="150" cy="150" r="148" fill="url(#g4)" stroke="rgba(242,240,234,.12)"/>
-            <circle cx="150" cy="150" r="28" fill="#0B0C0E" stroke="rgba(242,240,234,.25)"/>
-            <text font-size="14" letter-spacing="4" fill="#F2F0EA"><textPath href="#p4" startOffset="50%" text-anchor="middle">PERFORMANCE SHORT</textPath></text>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- 05 -->
-    <div class="showcase-item" data-jewel="amethyst" style="--rot:-6deg;">
-      <div class="showcase-meta">
-        <p class="showcase-index">05 / 07</p>
-        <h2 class="showcase-name">Tapered Training Pant</h2>
-        <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Leg day / Lifestyle</dd></div>
-          <div><dt>Fabric</dt><dd>Brushed technical fleece</dd></div>
-          <div><dt>Note</dt><dd>Tapered from the knee, never tight at the ankle</dd></div>
-        </dl>
-      </div>
-      <div class="disc-wrap">
-        <div class="disc" data-cursor>
-          <svg viewBox="0 0 300 300" aria-hidden="true">
-            <defs>
-              <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#2A2B2E"/><stop offset="100%" stop-color="#3a3b3f"/>
-              </linearGradient>
-              <path id="p5" d="M 45,150 A 105,105 0 0 1 255,150" fill="none"/>
-            </defs>
-            <circle cx="150" cy="150" r="148" fill="url(#g5)" stroke="rgba(242,240,234,.12)"/>
-            <circle cx="150" cy="150" r="28" fill="#0B0C0E" stroke="rgba(242,240,234,.25)"/>
-            <text font-size="14" letter-spacing="4" fill="#F2F0EA"><textPath href="#p5" startOffset="50%" text-anchor="middle">TRAINING PANT</textPath></text>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- 06 -->
-    <div class="showcase-item" data-jewel="sapphire" style="--rot:4deg;">
-      <div class="showcase-meta">
-        <p class="showcase-index">06 / 07</p>
+        <p class="showcase-index">01 / 05</p>
         <h2 class="showcase-name">Essential Hoodie</h2>
         <dl class="showcase-specs">
           <div><dt>Category</dt><dd>Warm-up / Everyday</dd></div>
@@ -632,47 +550,81 @@
           <div><dt>Note</dt><dd>The piece worn before and after, not just during</dd></div>
         </dl>
       </div>
-      <div class="disc-wrap">
-        <div class="disc" data-cursor>
-          <svg viewBox="0 0 300 300" aria-hidden="true">
-            <defs>
-              <linearGradient id="g6" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#B8B6AE"/><stop offset="100%" stop-color="#F2F0EA"/>
-              </linearGradient>
-              <path id="p6" d="M 45,150 A 105,105 0 0 1 255,150" fill="none"/>
-            </defs>
-            <circle cx="150" cy="150" r="148" fill="url(#g6)" stroke="rgba(11,12,14,.15)"/>
-            <circle cx="150" cy="150" r="28" fill="#0B0C0E" stroke="rgba(242,240,234,.25)"/>
-            <text font-size="15" letter-spacing="5" fill="#0B0C0E"><textPath href="#p6" startOffset="50%" text-anchor="middle">ESSENTIAL HOODIE</textPath></text>
-          </svg>
+      <div class="frame-wrap">
+        <div class="product-frame" data-cursor="View">
+          <img src="renders/hoodie-maroon.webp" alt="Essential Hoodie in maroon" loading="lazy">
         </div>
       </div>
     </div>
 
-    <!-- 07 -->
-    <div class="showcase-item" data-jewel="ruby" style="--rot:-5deg;">
+    <!-- 02 -->
+    <div class="showcase-item" data-jewel="emerald" data-num="02">
       <div class="showcase-meta">
-        <p class="showcase-index">07 / 07</p>
-        <h2 class="showcase-name">Training Zip Jacket</h2>
+        <p class="showcase-index">02 / 05</p>
+        <h2 class="showcase-name">Crewneck Sweatshirt</h2>
         <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Premium outer layer</dd></div>
-          <div><dt>Fabric</dt><dd>Water-resistant technical shell</dd></div>
-          <div><dt>Note</dt><dd>The layer that closes out the uniform</dd></div>
+          <div><dt>Category</dt><dd>Warm-up / Lifestyle</dd></div>
+          <div><dt>Fabric</dt><dd>Heavyweight brushed fleece</dd></div>
+          <div><dt>Note</dt><dd>Off-duty, same standard</dd></div>
         </dl>
       </div>
-      <div class="disc-wrap">
-        <div class="disc" data-cursor>
-          <svg viewBox="0 0 300 300" aria-hidden="true">
-            <defs>
-              <linearGradient id="g7" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#0B0C0E"/><stop offset="100%" stop-color="#2A2B2E"/>
-              </linearGradient>
-              <path id="p7" d="M 45,150 A 105,105 0 0 1 255,150" fill="none"/>
-            </defs>
-            <circle cx="150" cy="150" r="148" fill="url(#g7)" stroke="rgba(242,240,234,.12)"/>
-            <circle cx="150" cy="150" r="28" fill="#0B0C0E" stroke="rgba(242,240,234,.25)"/>
-            <text font-size="14" letter-spacing="4" fill="#F2F0EA"><textPath href="#p7" startOffset="50%" text-anchor="middle">ZIP JACKET</textPath></text>
-          </svg>
+      <div class="frame-wrap">
+        <div class="product-frame" data-cursor="View">
+          <img src="renders/sweatshirt-green.webp" alt="Crewneck sweatshirt in green" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="showcase-item" data-jewel="amethyst" data-num="03">
+      <div class="showcase-meta">
+        <p class="showcase-index">03 / 05</p>
+        <h2 class="showcase-name">Stringer Tank</h2>
+        <dl class="showcase-specs">
+          <div><dt>Category</dt><dd>Bodybuilding / Statement</dd></div>
+          <div><dt>Fabric</dt><dd>Ribbed performance knit</dd></div>
+          <div><dt>Note</dt><dd>Limited colorway — attention, on purpose</dd></div>
+        </dl>
+      </div>
+      <div class="frame-wrap">
+        <div class="product-frame" data-cursor="View">
+          <img src="renders/tank-black-gold.webp" alt="Stringer tank in black with gold trim" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="showcase-item" data-jewel="sapphire" data-num="04">
+      <div class="showcase-meta">
+        <p class="showcase-index">04 / 05</p>
+        <h2 class="showcase-name">Oversized Tee</h2>
+        <dl class="showcase-specs">
+          <div><dt>Category</dt><dd>Heavyweight / Lifestyle</dd></div>
+          <div><dt>Fabric</dt><dd>Heavyweight cotton blend</dd></div>
+          <div><dt>Note</dt><dd>The product that defines the uniform</dd></div>
+        </dl>
+      </div>
+      <div class="frame-wrap">
+        <div class="product-frame" data-cursor="View">
+          <img src="renders/tee-blue.webp" alt="Oversized tee in blue" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="showcase-item" data-jewel="emerald" data-num="05">
+      <div class="showcase-meta">
+        <p class="showcase-index">05 / 05</p>
+        <h2 class="showcase-name">Tapered Training Pant</h2>
+        <dl class="showcase-specs">
+          <div><dt>Category</dt><dd>Leg day / Lifestyle</dd></div>
+          <div><dt>Fabric</dt><dd>Brushed technical fleece</dd></div>
+          <div><dt>Note</dt><dd>Tapered from the knee, never tight at the ankle</dd></div>
+        </dl>
+      </div>
+      <div class="frame-wrap">
+        <div class="product-frame" data-cursor="View">
+          <img src="renders/sweatpants-black.webp" alt="Tapered training pant in black" loading="lazy">
         </div>
       </div>
     </div>
@@ -680,17 +632,19 @@
 
   <section class="spotlight" id="spotlight">
     <div class="container spotlight-grid">
-      <div class="spotlight-media rise"></div>
+      <div class="spotlight-media rise">
+        <img src="renders/hoodie-maroon.webp" alt="Essential Hoodie in maroon, hero product" loading="lazy">
+      </div>
       <div class="rise" style="transition-delay:.08s">
         <p class="eyebrow" style="margin-bottom:14px;">Hero Product</p>
-        <h2>The Muscle Fit Tee</h2>
-        <p class="spotlight-tag">The product that should define the uniform.</p>
+        <h2>The Essential Hoodie</h2>
+        <p class="spotlight-tag">The piece that should define the uniform.</p>
         <div class="spec-list">
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Fit</span><span class="spec-detail">Athletic shoulder + chest fit</span></div>
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Silhouette</span><span class="spec-detail">Subtle waist taper</span></div>
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Fabric</span><span class="spec-detail">Premium performance jersey</span></div>
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Technology</span><span class="spec-detail">Sweat-activated cooling</span></div>
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Mark</span><span class="spec-detail">Minimal chest signature</span></div>
+          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Fit</span><span class="spec-detail">Relaxed drop-shoulder</span></div>
+          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Silhouette</span><span class="spec-detail">Boxy fit, ribbed cuffs and hem</span></div>
+          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Fabric</span><span class="spec-detail">Heavyweight loopback cotton</span></div>
+          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Technology</span><span class="spec-detail">Brushed interior warmth</span></div>
+          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Mark</span><span class="spec-detail">Gold foil chest signature</span></div>
         </div>
       </div>
     </div>
@@ -744,20 +698,20 @@
 
       <div class="looks-grid">
         <div class="look-card rise">
-          <div><p class="look-num">01</p><p class="look-name">The Beast</p><p class="look-combo">Black Muscle Tee + Black 5&Prime; Short</p></div>
+          <div><p class="look-num">01</p><p class="look-name">The Beast</p><p class="look-combo">Maroon Essential Hoodie + Black Training Pant</p></div>
           <p class="look-mood">Power · Dark · Focused</p>
         </div>
         <div class="look-card rise">
-          <div><p class="look-num">02</p><p class="look-name">Clean Alpha</p><p class="look-combo">Off White Oversized + Stone Short</p></div>
+          <div><p class="look-num">02</p><p class="look-name">Clean Alpha</p><p class="look-combo">Blue Oversized Tee + Black Training Pant</p></div>
           <p class="look-mood">Premium · Clean · Elevated</p>
         </div>
         <div class="look-card rise">
-          <div><p class="look-num">03</p><p class="look-name">Dark Mode</p><p class="look-combo">Charcoal Oversized + Black Pant</p></div>
+          <div><p class="look-num">03</p><p class="look-name">Dark Mode</p><p class="look-combo">Black &amp; Gold Stringer Tank + Black Training Pant</p></div>
           <p class="look-mood">Underground · Serious</p>
         </div>
         <div class="look-card rise">
-          <div><p class="look-num">04</p><p class="look-name">Pump Day</p><p class="look-combo">Limited Red Stringer + Black Short</p></div>
-          <p class="look-mood">Attention · Statement</p>
+          <div><p class="look-num">04</p><p class="look-name">Pump Day</p><p class="look-combo">Green Crewneck Sweatshirt + Black Training Pant</p></div>
+          <p class="look-mood">Energy · Statement</p>
         </div>
       </div>
     </div>
