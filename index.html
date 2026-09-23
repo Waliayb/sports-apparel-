@@ -3,38 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TBD — Gym Uniform, Engineered</title>
-<meta name="description" content="A working draft: gym uniform brand built for the floor and engineered in the lab. Name and product photography in development.">
+<title>TBD — Performance Fabric Lab</title>
+<meta name="description" content="A working draft: gym uniform engineered like a lab spec, not marketed like a lifestyle brand. Name and product photography in development.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <script>document.documentElement.classList.add('js-ready');</script>
 
 <style>
   :root{
-    --ink:#0A0A0B;
-    --charcoal:#18181A;
-    --charcoal-line:rgba(242,240,234,.09);
-    --stone:#A8A6A0;
-    --off-white:#F3F1EB;
-    --off-white-soft:rgba(243,241,235,.62);
-    --champagne:#C7A76C;
-    --champagne-dim:rgba(199,167,108,.14);
+    --ink:#0F1712;
+    --charcoal:#16211A;
+    --charcoal-line:rgba(232,228,220,.1);
+    --stone:#8A9188;
+    --off-white:#E8E4DC;
+    --off-white-soft:rgba(232,228,220,.62);
 
-    --emerald:#3C7A5C;
-    --emerald-dim:rgba(60,122,92,.14);
-    --sapphire:#3C5C7E;
-    --sapphire-dim:rgba(60,92,126,.14);
-    --amethyst:#705A8C;
-    --amethyst-dim:rgba(112,90,140,.14);
-    --ruby:#7E3B44;
-    --ruby-dim:rgba(126,59,68,.14);
-    --jewel:var(--emerald);
-    --jewel-dim:var(--emerald-dim);
+    --gold:#C9A24B;
+    --gold-dim:rgba(201,162,75,.14);
+    --jewel:var(--gold);
+    --jewel-dim:var(--gold-dim);
 
-    --display:"Fraunces", Georgia, serif;
+    --display:"Space Grotesk", "Arial", sans-serif;
+    --mono:"IBM Plex Mono", "Courier New", monospace;
     --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
     --ease-settle:cubic-bezier(.19,.74,.24,1);
@@ -68,10 +61,10 @@
   .container{ max-width:var(--container); margin-inline:auto; padding-inline:var(--pad); }
 
   .eyebrow{
-    font-family:var(--sans);
-    font-weight:600;
-    font-size:11.5px;
-    letter-spacing:.22em;
+    font-family:var(--mono);
+    font-weight:500;
+    font-size:11px;
+    letter-spacing:.18em;
     text-transform:uppercase;
     color:var(--stone);
     display:inline-flex;
@@ -80,11 +73,31 @@
   }
   .eyebrow::before{
     content:"";
-    width:5px; height:5px; border-radius:50%;
-    background:var(--jewel);
+    width:6px; height:6px;
+    background:var(--gold);
     flex:none;
     transition:background-color .4s var(--ease-settle);
   }
+
+  /* ---------- GRID / SPEC TEXTURE ---------- */
+  .grid-bg{
+    background-image:
+      linear-gradient(var(--charcoal-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--charcoal-line) 1px, transparent 1px);
+    background-size:44px 44px;
+    background-position:center top;
+  }
+  .grid-fade{
+    position:absolute; inset:0;
+    background:radial-gradient(80% 60% at 50% 20%, transparent 0%, var(--ink) 78%);
+    pointer-events:none;
+  }
+  .corner-ticks::before,.corner-ticks::after{
+    content:""; position:absolute; width:18px; height:18px;
+    border:1px solid var(--gold); opacity:.55; z-index:2; pointer-events:none;
+  }
+  .corner-ticks::before{ top:0; left:0; border-width:1px 0 0 1px; }
+  .corner-ticks::after{ bottom:0; right:0; border-width:0 1px 1px 0; }
 
   /* ---------- REVEAL ---------- */
   html.js-ready .rise{
@@ -110,24 +123,23 @@
   }
   .nav.is-scrolled{ border-bottom-color:var(--charcoal-line); }
   .wordmark{
-    font-family:var(--display);
-    font-style:italic;
-    font-weight:500;
-    font-size:21px;
-    letter-spacing:.01em;
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:17px;
+    letter-spacing:.04em;
     text-decoration:none;
   }
-  .wordmark .dot{ color:var(--jewel); transition:color .4s var(--ease-settle); }
+  .wordmark .dot{ color:var(--gold); }
   .nav-links{ display:flex; align-items:center; gap:clamp(18px,3vw,36px); }
   .nav-links a{
-    text-decoration:none; font-size:13px; font-weight:600;
-    letter-spacing:.04em; text-transform:uppercase;
+    text-decoration:none; font-family:var(--mono); font-size:12px; font-weight:500;
+    letter-spacing:.06em; text-transform:uppercase;
     position:relative; padding-bottom:3px;
   }
   .nav-links a::after{
     content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
-    background:var(--jewel); transform:scaleX(0); transform-origin:left;
-    transition:transform .25s ease, background-color .4s var(--ease-settle);
+    background:var(--gold); transform:scaleX(0); transform-origin:left;
+    transition:transform .25s ease;
   }
   .nav-links a:hover::after,.nav-links a:focus-visible::after{ transform:scaleX(1); }
 
@@ -143,63 +155,113 @@
     transform:translateY(-100%); transition:transform .35s ease;
   }
   .mobile-menu.is-open{ transform:translateY(0); }
-  .mobile-menu a{ font-family:var(--display); font-weight:400; font-size:32px; text-decoration:none; }
+  .mobile-menu a{ font-family:var(--display); font-weight:500; font-size:30px; text-decoration:none; }
 
-  /* ---------- HERO ---------- */
+  /* ---------- HERO (specimen diagram) ---------- */
   .hero{
     position:relative;
     min-height:100svh;
-    display:flex; flex-direction:column; justify-content:center;
-    padding:120px var(--pad) 80px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:clamp(24px,4vw,48px);
+    padding:140px var(--pad) 80px;
     overflow:hidden;
+    background:var(--ink);
   }
   .hero::before{
     content:"";
     position:absolute; inset:-10% -5%;
-    background:linear-gradient(180deg, var(--ink), var(--charcoal));
+    background:
+      linear-gradient(var(--charcoal-line) 1px, transparent 1px) 0 0/44px 44px,
+      linear-gradient(90deg, var(--charcoal-line) 1px, transparent 1px) 0 0/44px 44px,
+      linear-gradient(180deg, var(--ink), var(--charcoal));
     transform:translateY(var(--px,0px));
     will-change:transform;
     z-index:0;
   }
-  .hero-content{ position:relative; z-index:1; max-width:840px; }
-  .hero-kicker{ font-size:11.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--stone); margin-bottom:26px; }
+  .hero-content{ position:relative; z-index:1; }
+  .hero-kicker{ font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--stone); margin-bottom:26px; }
   .hero h1{
     font-family:var(--display);
-    font-weight:400;
-    font-size:clamp(38px,6.2vw,88px);
-    line-height:1.08;
+    font-weight:500;
+    font-size:clamp(34px,5vw,64px);
+    line-height:1.12;
     letter-spacing:-.01em;
   }
   .hero h1 span{ display:block; overflow:hidden; padding-bottom:.06em; }
-  .hero h1 em{ font-style:italic; font-weight:400; color:var(--champagne); }
-  .hero-sub{ margin-top:28px; font-size:clamp(16px,1.6vw,18.5px); color:var(--off-white-soft); max-width:50ch; font-weight:300; line-height:1.7; }
-  .hero-ctas{ margin-top:42px; display:flex; gap:24px; flex-wrap:wrap; }
+  .hero h1 em{ font-style:normal; font-weight:500; color:var(--gold); }
+  .hero-sub{ margin-top:26px; font-size:clamp(15px,1.4vw,17px); color:var(--off-white-soft); max-width:46ch; font-weight:300; line-height:1.7; }
+  .hero-ctas{ margin-top:40px; display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* ---------- SPECIMEN DIAGRAM ---------- */
+  .specimen{
+    position:relative; z-index:1;
+    aspect-ratio:4/5;
+    max-width:420px;
+    margin-inline:auto;
+    background:var(--charcoal);
+    box-shadow:0 0 0 1px var(--charcoal-line);
+  }
+  .specimen-id{
+    position:absolute; top:12px; left:14px; z-index:3;
+    font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--gold);
+  }
+  .specimen-scale{
+    position:absolute; bottom:12px; right:14px; z-index:3;
+    font-family:var(--mono); font-size:10px; letter-spacing:.06em;
+    color:var(--stone);
+  }
+  .specimen img{
+    width:100%; height:100%; object-fit:cover; object-position:center top;
+    filter:saturate(.82) contrast(1.03) brightness(.98);
+  }
+  .specimen svg{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; z-index:2; }
+  .specimen-line{ stroke:var(--gold); stroke-width:1; opacity:.85; }
+  .specimen-dot{ fill:var(--gold); }
+  .specimen-tag{
+    position:absolute; z-index:3;
+    font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--off-white); background:rgba(15,23,18,.82);
+    border:1px solid var(--charcoal-line);
+    padding:5px 9px;
+    white-space:nowrap;
+  }
+  .specimen-tag .zone-label{ color:var(--gold); }
+
   .btn{
-    display:inline-flex; align-items:center; justify-content:center;
-    padding:16px 32px;
-    font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:15px 26px;
+    font-family:var(--mono);
+    font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase;
     text-decoration:none;
-    background:var(--off-white); color:var(--ink);
-    border:1px solid var(--off-white);
-    transition:opacity .25s ease, border-color .25s ease, color .25s ease;
+    background:transparent; color:var(--off-white);
+    border:1px solid var(--stone);
+    transition:border-color .25s ease, color .25s ease;
   }
-  .btn:hover{ opacity:.82; }
-  .btn-ghost{
-    background:transparent; color:var(--off-white-soft); border:1px solid var(--charcoal-line);
-    opacity:1;
+  .btn::before{
+    content:"";
+    width:7px; height:7px; flex:none;
+    background:var(--stone);
+    transition:background-color .25s ease, box-shadow .25s ease;
   }
-  .btn-ghost:hover{ border-color:var(--stone); color:var(--off-white); opacity:1; }
+  .btn:hover{ border-color:var(--gold); color:var(--gold); }
+  .btn:hover::before{ background:var(--gold); box-shadow:0 0 6px 1px var(--gold-dim); }
+  .btn-ghost{ border-color:var(--charcoal-line); color:var(--off-white-soft); }
+  .btn-ghost::before{ background:var(--charcoal-line); }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
 
   /* ---------- SECTION SCAFFOLDING ---------- */
   section{ padding-block:var(--section-pad); position:relative; }
   .section-head{ max-width:760px; margin-bottom:clamp(44px,6vw,80px); display:flex; flex-direction:column; gap:18px; }
   .section-head h2{
     font-family:var(--display);
-    font-weight:400;
+    font-weight:500;
     font-size:clamp(28px,4vw,46px);
     line-height:1.12;
   }
-  .lead{ font-size:clamp(15px,1.4vw,17.5px); color:var(--off-white-soft); max-width:62ch; font-weight:300; line-height:1.7; }
+  .lead{ font-family:var(--sans); font-size:clamp(15px,1.4vw,17.5px); color:var(--off-white-soft); max-width:62ch; font-weight:300; line-height:1.7; }
 
   /* ---------- SHOWCASE (scroll-snapped, one product per screen) ---------- */
   .showcase{
@@ -238,22 +300,18 @@
     pointer-events:none;
     user-select:none;
   }
-  .showcase-item[data-jewel="emerald"]{ --jewel:var(--emerald); --jewel-dim:var(--emerald-dim); }
-  .showcase-item[data-jewel="sapphire"]{ --jewel:var(--sapphire); --jewel-dim:var(--sapphire-dim); }
-  .showcase-item[data-jewel="amethyst"]{ --jewel:var(--amethyst); --jewel-dim:var(--amethyst-dim); }
-  .showcase-item[data-jewel="ruby"]{ --jewel:var(--ruby); --jewel-dim:var(--ruby-dim); }
   .showcase-meta{ position:relative; z-index:1; display:flex; flex-direction:column; gap:22px; }
-  .showcase-index{ font-size:12.5px; letter-spacing:.14em; color:var(--stone); }
+  .showcase-index{ font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--gold); }
   .showcase-name{
     font-family:var(--display);
-    font-weight:400;
+    font-weight:500;
     font-size:clamp(26px,3vw,40px);
     line-height:1.1;
   }
   .showcase-specs{ display:flex; flex-direction:column; gap:14px; margin:0; }
   .showcase-specs div{ border-top:1px solid var(--charcoal-line); padding-top:12px; }
-  .showcase-specs dt{ font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--jewel); margin-bottom:5px; transition:color .4s var(--ease-settle); }
-  .showcase-specs dd{ margin:0; font-size:14px; color:var(--off-white-soft); }
+  .showcase-specs dt{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--stone); margin-bottom:5px; }
+  .showcase-specs dd{ font-family:var(--mono); margin:0; font-size:13.5px; color:var(--off-white); }
 
   .frame-wrap{ position:relative; z-index:1; display:flex; align-items:center; justify-content:center; }
   .product-frame{
@@ -263,17 +321,22 @@
     aspect-ratio:4/5;
     overflow:hidden;
     background:var(--charcoal);
-    box-shadow:0 50px 80px -32px rgba(0,0,0,.6), 0 0 0 1px var(--jewel-dim);
-    transition:box-shadow .5s var(--ease-settle);
+    box-shadow:0 50px 80px -32px rgba(0,0,0,.6), 0 0 0 1px var(--charcoal-line);
+  }
+  .product-frame .plate-id{
+    position:absolute; top:12px; left:14px; z-index:2;
+    font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--gold);
   }
   .product-frame::after{
     content:attr(data-cursor);
     position:absolute;
-    left:20px; bottom:18px;
-    font-size:10.5px; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--jewel);
+    left:14px; bottom:12px; z-index:2;
+    font-family:var(--mono);
+    font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--gold);
     opacity:0; transform:translateY(6px);
-    transition:opacity .35s ease, transform .35s ease, color .4s var(--ease-settle);
+    transition:opacity .35s ease, transform .35s ease;
     pointer-events:none;
   }
   .product-frame:hover::after{ opacity:.9; transform:translateY(0); }
@@ -281,7 +344,7 @@
     width:100%; height:100%;
     object-fit:cover; object-position:center top;
     display:block;
-    filter:saturate(.94) contrast(1.01) brightness(1.01);
+    filter:saturate(.82) contrast(1.03) brightness(.98);
     transition:transform 1.4s var(--ease-settle);
   }
   .product-frame:hover img{ transform:scale(1.025); }
@@ -321,27 +384,30 @@
     aspect-ratio:4/5;
     overflow:hidden;
     background:var(--charcoal);
-    box-shadow:0 50px 80px -32px rgba(0,0,0,.6), 0 0 0 1px var(--jewel-dim);
-    transition:box-shadow .5s var(--ease-settle);
+    box-shadow:0 0 0 1px var(--charcoal-line);
+  }
+  .spotlight-media .plate-id{
+    position:absolute; top:12px; left:14px; z-index:2;
+    font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--gold);
   }
   .spotlight-media img{
     width:100%; height:100%;
     object-fit:cover; object-position:center top;
     display:block;
-    filter:saturate(.94) contrast(1.01) brightness(1.01);
+    filter:saturate(.82) contrast(1.03) brightness(.98);
   }
-  .spotlight h2{ font-family:var(--display); font-weight:400; font-size:clamp(28px,4vw,44px); margin-bottom:10px; }
+  .spotlight h2{ font-family:var(--display); font-weight:500; font-size:clamp(28px,4vw,42px); margin-bottom:10px; }
   .spotlight-tag{ font-size:14.5px; color:var(--stone); margin-bottom:32px; font-weight:300; }
-  .spec-list{ display:flex; flex-direction:column; gap:20px; }
-  .spec{ display:flex; align-items:baseline; gap:16px; border-bottom:1px solid var(--charcoal-line); padding-bottom:18px; }
+  .spec-list{ display:flex; flex-direction:column; }
+  .spec{ display:flex; align-items:baseline; gap:16px; border-bottom:1px solid var(--charcoal-line); padding-block:16px; }
+  .spec:first-child{ padding-top:0; }
   .spec-check{
-    flex:none; width:22px; height:22px; border-radius:50%;
-    border:1.5px solid var(--jewel); color:var(--jewel);
-    display:flex; align-items:center; justify-content:center; font-size:12px;
-    transition:border-color .4s var(--ease-settle), color .4s var(--ease-settle);
+    flex:none;
+    font-family:var(--mono); font-size:11px; color:var(--gold);
   }
-  .spec-label{ font-family:var(--sans); font-weight:600; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--off-white); min-width:150px; }
-  .spec-detail{ font-size:14.5px; color:var(--off-white-soft); }
+  .spec-label{ font-family:var(--mono); font-weight:500; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--off-white); min-width:150px; }
+  .spec-detail{ font-family:var(--mono); font-size:13.5px; color:var(--off-white-soft); }
 
   /* ---------- LAB ---------- */
   .lab{
@@ -358,77 +424,83 @@
     margin-bottom:clamp(36px,5vw,56px);
   }
   .lab-tab{
-    padding:12px 20px;
+    padding:12px 18px;
     border:1px solid var(--charcoal-line);
-    font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    font-family:var(--mono);
+    font-size:11.5px; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
     color:var(--off-white-soft);
+    display:flex; align-items:center;
     transition:border-color .3s ease, color .3s ease, background-color .3s ease;
   }
   .lab-tab .dot{
-    display:inline-block; width:7px; height:7px; border-radius:50%;
+    display:inline-block; width:6px; height:6px;
     margin-right:9px; vertical-align:middle;
-    background:currentColor;
+    background:var(--charcoal-line);
+    transition:background-color .3s ease;
   }
-  .lab-tab[data-jewel="emerald"]{ color:var(--emerald); }
-  .lab-tab[data-jewel="sapphire"]{ color:var(--sapphire); }
-  .lab-tab[data-jewel="amethyst"]{ color:var(--amethyst); }
-  .lab-tab[data-jewel="ruby"]{ color:var(--ruby); }
-  .lab-tab.is-active{ border-color:currentColor; background:rgba(255,255,255,.04); }
+  .lab-tab.is-active{ border-color:var(--gold); color:var(--gold); background:rgba(201,162,75,.06); }
+  .lab-tab.is-active .dot{ background:var(--gold); box-shadow:0 0 6px 1px var(--gold-dim); }
 
-  .lab-body{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,6vw,72px); align-items:center; }
+  .lab-body{ display:grid; grid-template-columns:.8fr 1fr; gap:clamp(32px,6vw,72px); align-items:center; }
   .lab-diagram{
     position:relative;
     aspect-ratio:1/1;
     display:flex; align-items:center; justify-content:center;
     border:1px solid var(--charcoal-line);
-    background:radial-gradient(circle at 50% 50%, rgba(255,255,255,.03), transparent 70%);
+    background-image:
+      linear-gradient(var(--charcoal-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--charcoal-line) 1px, transparent 1px);
+    background-size:22px 22px;
   }
   .lab-diagram svg{ width:64%; height:64%; }
   .lab-diagram .ring{
-    fill:none; stroke:var(--jewel); stroke-width:1; opacity:.5;
-    transition:stroke .5s var(--ease-settle);
+    fill:none; stroke:var(--gold); stroke-width:1; opacity:.5;
   }
-  .lab-diagram .core{
-    fill:var(--jewel); opacity:.85;
-    transition:fill .5s var(--ease-settle);
-  }
-  .lab-diagram .pulse{
-    fill:none; stroke:var(--jewel); stroke-width:1.4;
-    transition:stroke .5s var(--ease-settle);
-  }
+  .lab-diagram .core{ fill:var(--gold); opacity:.85; }
+  .lab-diagram .pulse{ fill:none; stroke:var(--gold); stroke-width:1.4; }
   html.js-ready .lab-diagram .ring-outer{ animation:spin 22s linear infinite; transform-origin:50% 50%; }
   html.js-ready .lab-diagram .ring-inner{ animation:spin 14s linear infinite reverse; transform-origin:50% 50%; }
   html.js-ready .lab-diagram .core{ animation:pulseScale 3.2s var(--ease-settle) infinite; transform-origin:50% 50%; }
   @keyframes spin{ to{ transform:rotate(360deg); } }
   @keyframes pulseScale{ 0%,100%{ transform:scale(1); opacity:.85; } 50%{ transform:scale(1.18); opacity:1; } }
 
-  .lab-copy h3{ font-family:var(--display); font-weight:400; font-size:clamp(24px,3vw,32px); margin-bottom:16px; color:var(--off-white); transition:color .4s var(--ease-settle); }
-  .lab-copy p.lab-intro{ color:var(--off-white-soft); font-size:15.5px; margin-bottom:24px; max-width:52ch; }
-  .lab-points{ display:flex; flex-direction:column; gap:14px; }
-  .lab-point{ display:flex; gap:12px; font-size:14.5px; color:var(--off-white); }
-  .lab-point::before{ content:"—"; color:var(--jewel); flex:none; transition:color .4s var(--ease-settle); }
+  .lab-copy h3{ font-family:var(--display); font-weight:500; font-size:clamp(24px,3vw,32px); margin-bottom:18px; color:var(--off-white); }
+  .lab-copy p.lab-intro{ color:var(--off-white-soft); font-size:15px; margin-bottom:28px; max-width:52ch; font-weight:300; line-height:1.7; }
+  .lab-stat{
+    display:flex; align-items:baseline; gap:12px;
+    padding:20px 0 24px; margin-bottom:24px;
+    border-top:1px solid var(--charcoal-line); border-bottom:1px solid var(--charcoal-line);
+  }
+  .lab-stat-value{ font-family:var(--mono); font-size:clamp(36px,4vw,52px); font-weight:600; color:var(--gold); line-height:1; }
+  .lab-stat-unit{ font-family:var(--mono); font-size:20px; font-weight:600; color:var(--gold); }
+  .lab-stat-label{ font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--stone); max-width:16ch; }
+  .lab-points{ display:flex; flex-direction:column; }
+  .lab-points div{ display:flex; gap:20px; align-items:baseline; padding-block:12px; border-top:1px solid var(--charcoal-line); }
+  .lab-points dt{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); min-width:110px; flex:none; }
+  .lab-points dd{ margin:0; font-family:var(--mono); font-size:13.5px; color:var(--off-white); }
 
   /* ---------- LOOKS ---------- */
   .looks{ background:var(--charcoal); border-top:1px solid var(--charcoal-line); }
   .looks-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--charcoal-line); border:1px solid var(--charcoal-line); }
   .look-card{ background:var(--charcoal); padding:32px; display:flex; flex-direction:column; gap:14px; min-height:220px; justify-content:space-between; }
   .look-num{ font-family:var(--sans); font-weight:600; font-size:12px; letter-spacing:.08em; color:var(--jewel); transition:color .4s var(--ease-settle); }
-  .look-name{ font-family:var(--display); font-weight:400; font-size:24px; margin-top:4px; }
-  .look-combo{ font-size:14px; color:var(--off-white-soft); font-weight:300; }
-  .look-mood{ font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--stone); }
-  .looks-tagline{ margin-top:30px; font-family:var(--display); font-weight:400; font-style:italic; font-size:clamp(18px,2.2vw,26px); }
+  .look-name{ font-family:var(--display); font-weight:500; font-size:24px; margin-top:4px; }
+  .look-combo{ font-family:var(--mono); font-size:12.5px; color:var(--off-white-soft); font-weight:400; }
+  .look-mood{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--stone); }
+  .looks-tagline{ margin-top:30px; font-family:var(--display); font-weight:500; font-size:clamp(18px,2.2vw,26px); }
 
   /* ---------- COLOR SYSTEM ---------- */
   .colors{ background:var(--ink); border-top:1px solid var(--charcoal-line); }
   .swatch-row{ display:flex; gap:1px; background:var(--charcoal-line); border:1px solid var(--charcoal-line); }
   .swatch{ flex:1; display:flex; flex-direction:column; }
   .swatch-fill{ aspect-ratio:1/1; width:100%; }
-  .swatch-label{ padding:12px 6px; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; text-align:center; color:var(--stone); }
-  .colors-note{ margin-top:22px; font-size:13.5px; color:var(--off-white-soft); }
+  .swatch-label{ padding:12px 6px 2px; font-size:11px; letter-spacing:.04em; text-transform:uppercase; text-align:center; color:var(--off-white-soft); }
+  .swatch-hex{ padding-bottom:12px; font-family:var(--mono); font-size:10.5px; text-align:center; color:var(--stone); }
+  .colors-note{ margin-top:22px; font-family:var(--mono); font-size:12.5px; color:var(--off-white-soft); }
 
   /* ---------- CONTACT ---------- */
   .contact{ background:var(--charcoal); border-top:1px solid var(--charcoal-line); text-align:center; }
-  .contact h2{ font-family:var(--display); font-weight:400; font-size:clamp(28px,4.2vw,48px); max-width:780px; margin:0 auto 20px; }
+  .contact h2{ font-family:var(--display); font-weight:500; font-size:clamp(28px,4.2vw,48px); max-width:780px; margin:0 auto 20px; }
   .contact .lead{ margin-inline:auto; }
   .contact-cta{ margin-top:34px; }
 
@@ -462,6 +534,8 @@
   @media (max-width:980px){
     .nav-links{ display:none; }
     .nav-toggle{ display:flex; }
+    .hero{ grid-template-columns:1fr; padding-top:120px; }
+    .specimen{ max-width:320px; order:-1; }
     .spotlight-grid,.lab-body,.looks-grid{ grid-template-columns:1fr; }
     .showcase-item{ grid-template-columns:1fr; padding-top:96px; }
     .showcase-meta{ order:2; }
@@ -473,6 +547,8 @@
   @media (max-width:600px){
     .swatch-label{ font-size:9.5px; }
     .lab-tabs{ gap:8px; }
+    .specimen-tag{ font-size:9px; padding:4px 7px; }
+    .lab-stat-value{ font-size:32px; }
   }
   @media (pointer:coarse){
     .cursor-dot,.cursor-ring{ display:none !important; }
@@ -508,16 +584,32 @@
 
   <section class="hero" id="heroSection">
     <div class="hero-content">
-      <p class="hero-kicker">Performance Uniform — Drop 01 — Working Draft</p>
+      <p class="hero-kicker">Spec Sheet — Drop 01 — Rev. A</p>
       <h1>
-        <span class="rise" style="transition-delay:.05s">More than gym wear.</span>
-        <span class="rise" style="transition-delay:.16s">It's a <em>presence</em>.</span>
+        <span class="rise" style="transition-delay:.05s">Not designed.</span>
+        <span class="rise" style="transition-delay:.16s"><em>Engineered.</em></span>
       </h1>
-      <p class="hero-sub rise" style="transition-delay:.3s">A uniform built for the gym floor and engineered in the lab — strong enough to train in, sharp enough to be remembered.</p>
+      <p class="hero-sub rise" style="transition-delay:.3s">A uniform built the way a performance fabric is built — spec by spec, zone by zone, tested before it's worn.</p>
       <div class="hero-ctas rise" style="transition-delay:.4s">
-        <a href="#uniform" class="btn">Shop the Uniform</a>
-        <a href="#lab" class="btn btn-ghost">Enter the Lab</a>
+        <a href="#uniform" class="btn">View Collection</a>
+        <a href="#lab" class="btn btn-ghost">Read the Spec Sheet</a>
       </div>
+    </div>
+    <div class="specimen rise corner-ticks" style="transition-delay:.2s">
+      <p class="specimen-id">Specimen 00 / Essential Hoodie</p>
+      <p class="specimen-scale">Scale 1:1 — Front Panel</p>
+      <img src="renders/hoodie-maroon.webp" alt="Essential Hoodie shown as a technical specimen with fabric zones marked">
+      <svg viewBox="0 0 420 525" aria-hidden="true">
+        <line class="specimen-line" x1="150" y1="270" x2="60" y2="270"></line>
+        <circle class="specimen-dot" cx="150" cy="270" r="3"></circle>
+        <line class="specimen-line" x1="270" y1="200" x2="360" y2="150"></line>
+        <circle class="specimen-dot" cx="270" cy="200" r="3"></circle>
+        <line class="specimen-line" x1="210" y1="360" x2="150" y2="440"></line>
+        <circle class="specimen-dot" cx="210" cy="360" r="3"></circle>
+      </svg>
+      <p class="specimen-tag" style="left:3%; top:48%;"><span class="zone-label">ZONE A</span> — Core Compression</p>
+      <p class="specimen-tag" style="right:3%; top:24%;"><span class="zone-label">ZONE B</span> — Free Shoulder</p>
+      <p class="specimen-tag" style="left:3%; top:79%;"><span class="zone-label">ZONE C</span> — Ribbed Hem</p>
     </div>
   </section>
 
@@ -525,90 +617,95 @@
     <div class="showcase-dots" id="showcaseDots" aria-hidden="true"></div>
 
     <!-- 01 -->
-    <div class="showcase-item" data-jewel="ruby" data-num="01">
+    <div class="showcase-item" data-num="01">
       <div class="showcase-meta">
-        <p class="showcase-index">01 / 05</p>
+        <p class="showcase-index">SPECIMEN 01 / 05</p>
         <h2 class="showcase-name">Essential Hoodie</h2>
         <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Warm-up / Everyday</dd></div>
-          <div><dt>Fabric</dt><dd>Heavyweight loopback cotton</dd></div>
-          <div><dt>Note</dt><dd>The piece worn before and after, not just during</dd></div>
+          <div><dt>Composition</dt><dd>68% Cotton / 27% Poly / 5% Elastane</dd></div>
+          <div><dt>Weight</dt><dd><span class="count-up" data-count="420">0</span> GSM</dd></div>
+          <div><dt>Finish</dt><dd>PFAS-Free DWR, Brushed Interior</dd></div>
         </dl>
       </div>
       <div class="frame-wrap">
-        <div class="product-frame" data-cursor="View">
+        <div class="product-frame corner-ticks" data-cursor="Inspect">
+          <p class="plate-id">Plate 01 — Hoodie / Maroon</p>
           <img src="renders/hoodie-maroon.webp" alt="Essential Hoodie in maroon" loading="lazy">
         </div>
       </div>
     </div>
 
     <!-- 02 -->
-    <div class="showcase-item" data-jewel="emerald" data-num="02">
+    <div class="showcase-item" data-num="02">
       <div class="showcase-meta">
-        <p class="showcase-index">02 / 05</p>
+        <p class="showcase-index">SPECIMEN 02 / 05</p>
         <h2 class="showcase-name">Crewneck Sweatshirt</h2>
         <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Warm-up / Lifestyle</dd></div>
-          <div><dt>Fabric</dt><dd>Heavyweight brushed fleece</dd></div>
-          <div><dt>Note</dt><dd>Off-duty, same standard</dd></div>
+          <div><dt>Composition</dt><dd>72% Cotton / 23% Poly / 5% Elastane</dd></div>
+          <div><dt>Weight</dt><dd><span class="count-up" data-count="380">0</span> GSM</dd></div>
+          <div><dt>Finish</dt><dd>Brushed Fleece Back, Zoned Seamless Rib</dd></div>
         </dl>
       </div>
       <div class="frame-wrap">
-        <div class="product-frame" data-cursor="View">
+        <div class="product-frame corner-ticks" data-cursor="Inspect">
+          <p class="plate-id">Plate 02 — Sweatshirt / Green</p>
           <img src="renders/sweatshirt-green.webp" alt="Crewneck sweatshirt in green" loading="lazy">
         </div>
       </div>
     </div>
 
     <!-- 03 -->
-    <div class="showcase-item" data-jewel="amethyst" data-num="03">
+    <div class="showcase-item" data-num="03">
       <div class="showcase-meta">
-        <p class="showcase-index">03 / 05</p>
+        <p class="showcase-index">SPECIMEN 03 / 05</p>
         <h2 class="showcase-name">Stringer Tank</h2>
         <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Bodybuilding / Statement</dd></div>
-          <div><dt>Fabric</dt><dd>Ribbed performance knit</dd></div>
-          <div><dt>Note</dt><dd>Limited colorway — attention, on purpose</dd></div>
+          <div><dt>Composition</dt><dd>54% Bamboo-Charcoal / 40% Poly / 6% Elastane</dd></div>
+          <div><dt>Weight</dt><dd><span class="count-up" data-count="185">0</span> GSM</dd></div>
+          <div><dt>Finish</dt><dd>4-Way Stretch, Ribbed Compression Knit</dd></div>
         </dl>
       </div>
       <div class="frame-wrap">
-        <div class="product-frame" data-cursor="View">
+        <div class="product-frame corner-ticks" data-cursor="Inspect">
+          <p class="plate-id">Plate 03 — Tank / Black-Gold</p>
           <img src="renders/tank-black-gold.webp" alt="Stringer tank in black with gold trim" loading="lazy">
         </div>
       </div>
     </div>
 
     <!-- 04 -->
-    <div class="showcase-item" data-jewel="sapphire" data-num="04">
+    <div class="showcase-item" data-num="04">
       <div class="showcase-meta">
-        <p class="showcase-index">04 / 05</p>
+        <p class="showcase-index">SPECIMEN 04 / 05</p>
         <h2 class="showcase-name">Oversized Tee</h2>
         <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Heavyweight / Lifestyle</dd></div>
-          <div><dt>Fabric</dt><dd>Heavyweight cotton blend</dd></div>
-          <div><dt>Note</dt><dd>The product that defines the uniform</dd></div>
+          <div><dt>Composition</dt><dd>60% Bamboo-Charcoal / 35% Poly / 5% Elastane</dd></div>
+          <div><dt>Weight</dt><dd><span class="count-up" data-count="240">0</span> GSM</dd></div>
+          <div><dt>Finish</dt><dd>PFAS-Free DWR, Drop-Shoulder Block</dd></div>
         </dl>
       </div>
       <div class="frame-wrap">
-        <div class="product-frame" data-cursor="View">
+        <div class="product-frame corner-ticks" data-cursor="Inspect">
+          <p class="plate-id">Plate 04 — Tee / Blue</p>
           <img src="renders/tee-blue.webp" alt="Oversized tee in blue" loading="lazy">
         </div>
       </div>
     </div>
 
     <!-- 05 -->
-    <div class="showcase-item" data-jewel="emerald" data-num="05">
+    <div class="showcase-item" data-num="05">
       <div class="showcase-meta">
-        <p class="showcase-index">05 / 05</p>
+        <p class="showcase-index">SPECIMEN 05 / 05</p>
         <h2 class="showcase-name">Tapered Training Pant</h2>
         <dl class="showcase-specs">
-          <div><dt>Category</dt><dd>Leg day / Lifestyle</dd></div>
-          <div><dt>Fabric</dt><dd>Brushed technical fleece</dd></div>
-          <div><dt>Note</dt><dd>Tapered from the knee, never tight at the ankle</dd></div>
+          <div><dt>Composition</dt><dd>65% Cotton / 30% Poly / 5% Elastane</dd></div>
+          <div><dt>Weight</dt><dd><span class="count-up" data-count="360">0</span> GSM</dd></div>
+          <div><dt>Finish</dt><dd>Brushed Technical Fleece, Zoned Seamless Knee</dd></div>
         </dl>
       </div>
       <div class="frame-wrap">
-        <div class="product-frame" data-cursor="View">
+        <div class="product-frame corner-ticks" data-cursor="Inspect">
+          <p class="plate-id">Plate 05 — Pant / Black</p>
           <img src="renders/sweatpants-black.webp" alt="Tapered training pant in black" loading="lazy">
         </div>
       </div>
@@ -617,37 +714,39 @@
 
   <section class="spotlight" id="spotlight">
     <div class="container spotlight-grid">
-      <div class="spotlight-media rise">
+      <div class="spotlight-media rise corner-ticks">
+        <p class="plate-id">Plate 00 — Hoodie / Maroon</p>
         <img src="renders/hoodie-maroon.webp" alt="Essential Hoodie in maroon, hero product" loading="lazy">
       </div>
       <div class="rise" style="transition-delay:.08s">
-        <p class="eyebrow" style="margin-bottom:14px;">Hero Product</p>
+        <p class="eyebrow" style="margin-bottom:14px;">Full Spec Report</p>
         <h2>The Essential Hoodie</h2>
-        <p class="spotlight-tag">The piece that should define the uniform.</p>
+        <p class="spotlight-tag">Reference garment for the Drop 01 fabric system.</p>
         <div class="spec-list">
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Fit</span><span class="spec-detail">Relaxed drop-shoulder</span></div>
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Silhouette</span><span class="spec-detail">Boxy fit, ribbed cuffs and hem</span></div>
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Fabric</span><span class="spec-detail">Heavyweight loopback cotton</span></div>
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Technology</span><span class="spec-detail">Brushed interior warmth</span></div>
-          <div class="spec"><span class="spec-check">✓</span><span class="spec-label">Mark</span><span class="spec-detail">Gold foil chest signature</span></div>
+          <div class="spec"><span class="spec-check">01</span><span class="spec-label">Fit</span><span class="spec-detail">Relaxed drop-shoulder</span></div>
+          <div class="spec"><span class="spec-check">02</span><span class="spec-label">Silhouette</span><span class="spec-detail">Boxy block, ribbed cuffs and hem</span></div>
+          <div class="spec"><span class="spec-check">03</span><span class="spec-label">Composition</span><span class="spec-detail">68% Cotton / 27% Poly / 5% Elastane</span></div>
+          <div class="spec"><span class="spec-check">04</span><span class="spec-label">Weight</span><span class="spec-detail"><span class="count-up" data-count="420">0</span> GSM, brushed interior</span></div>
+          <div class="spec"><span class="spec-check">05</span><span class="spec-label">Finish</span><span class="spec-detail">PFAS-Free DWR treatment</span></div>
+          <div class="spec"><span class="spec-check">06</span><span class="spec-label">Mark</span><span class="spec-detail">Gold foil chest signature</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="lab" id="lab">
+  <section class="lab grid-bg" id="lab">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow rise">Product Technology</p>
-        <h2 class="rise" style="transition-delay:.06s">Where innovation meets sport.</h2>
-        <p class="lead rise" style="transition-delay:.12s">Four fabric technologies, engineered like a lab spec — not marketed like a marketing spec. Switch tabs to see what's actually happening inside the fiber.</p>
+        <p class="eyebrow rise">Fabric Systems — Test Bench</p>
+        <h2 class="rise" style="transition-delay:.06s">Four technologies. Zero marketing copy.</h2>
+        <p class="lead rise" style="transition-delay:.12s">Each fabric system is logged like a lab result, not a slogan. Switch tabs to pull a different test record.</p>
       </div>
 
       <div class="lab-tabs" role="tablist" aria-label="Fabric technology">
-        <button class="lab-tab is-active" data-jewel="emerald" role="tab" aria-selected="true"><span class="dot"></span>Thermal Cooling</button>
-        <button class="lab-tab" data-jewel="sapphire" role="tab" aria-selected="false"><span class="dot"></span>Moisture Transfer</button>
-        <button class="lab-tab" data-jewel="amethyst" role="tab" aria-selected="false"><span class="dot"></span>Compression Support</button>
-        <button class="lab-tab" data-jewel="ruby" role="tab" aria-selected="false"><span class="dot"></span>Impact Durability</button>
+        <button class="lab-tab is-active" data-tech="cooling" role="tab" aria-selected="true"><span class="dot"></span>Thermal Cooling</button>
+        <button class="lab-tab" data-tech="moisture" role="tab" aria-selected="false"><span class="dot"></span>Moisture Transfer</button>
+        <button class="lab-tab" data-tech="compression" role="tab" aria-selected="false"><span class="dot"></span>Compression Support</button>
+        <button class="lab-tab" data-tech="durability" role="tab" aria-selected="false"><span class="dot"></span>Impact Durability</button>
       </div>
 
       <div class="lab-body">
@@ -661,13 +760,17 @@
         </div>
         <div class="lab-copy">
           <h3 id="labTitle">Thermal Cooling</h3>
-          <p class="lab-intro" id="labIntro">An enhanced wicking technology designed to keep you cool while active — capitalizing on your own sweat to lower the temperature of the fabric.</p>
-          <div class="lab-points" id="labPoints">
-            <p class="lab-point">Capitalizes on sweat to lower the temperature of the material</p>
-            <p class="lab-point">Long-lasting cooling through a full session</p>
-            <p class="lab-point">Accelerates the wicking process to keep you dry</p>
-            <p class="lab-point">Next-to-skin comfort, even under load</p>
+          <p class="lab-intro" id="labIntro">Sweat-activated endothermic cooling — the fabric pulls heat from the surface the moment moisture hits it.</p>
+          <div class="lab-stat">
+            <span class="lab-stat-value count-up" id="labStatValue" data-count="24">0</span><span class="lab-stat-unit" id="labStatUnit">%</span>
+            <span class="lab-stat-label" id="labStatLabel">Faster Heat Dissipation</span>
           </div>
+          <dl class="lab-points" id="labPoints">
+            <div><dt>Mechanism</dt><dd>Sweat-activated endothermic cooling</dd></div>
+            <div><dt>Metric</dt><dd>-2.4°C surface temperature</dd></div>
+            <div><dt>Duration</dt><dd>Full session, no drop-off</dd></div>
+            <div><dt>Result</dt><dd>Zero overheating at peak load</dd></div>
+          </dl>
         </div>
       </div>
     </div>
@@ -702,21 +805,20 @@
     </div>
   </section>
 
-  <section class="colors" id="colors">
+  <section class="colors grid-bg" id="colors">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow rise">Color System</p>
-        <h2 class="rise" style="transition-delay:.06s">A restrained palette with one disruptive signal.</h2>
+        <p class="eyebrow rise">Material Palette</p>
+        <h2 class="rise" style="transition-delay:.06s">One signal color. Everything else is neutral.</h2>
       </div>
       <div class="swatch-row">
-        <div class="swatch"><div class="swatch-fill" style="background:#0B0C0E"></div><p class="swatch-label">Black</p></div>
-        <div class="swatch"><div class="swatch-fill" style="background:#2A2B2E"></div><p class="swatch-label">Charcoal</p></div>
-        <div class="swatch"><div class="swatch-fill" style="background:#B8B6AE"></div><p class="swatch-label">Stone</p></div>
-        <div class="swatch"><div class="swatch-fill" style="background:#5B5F4E"></div><p class="swatch-label">Olive</p></div>
-        <div class="swatch"><div class="swatch-fill" style="background:#F2F0EA"></div><p class="swatch-label">Off White</p></div>
-        <div class="swatch"><div class="swatch-fill" style="background:#E23B4E"></div><p class="swatch-label">Ruby</p></div>
+        <div class="swatch"><div class="swatch-fill" style="background:#0F1712"></div><p class="swatch-label">Racing Green</p><p class="swatch-hex">#0F1712</p></div>
+        <div class="swatch"><div class="swatch-fill" style="background:#16211A"></div><p class="swatch-label">Charcoal</p><p class="swatch-hex">#16211A</p></div>
+        <div class="swatch"><div class="swatch-fill" style="background:#8A9188"></div><p class="swatch-label">Stone</p><p class="swatch-hex">#8A9188</p></div>
+        <div class="swatch"><div class="swatch-fill" style="background:#E8E4DC"></div><p class="swatch-label">Bone White</p><p class="swatch-hex">#E8E4DC</p></div>
+        <div class="swatch"><div class="swatch-fill" style="background:#C9A24B"></div><p class="swatch-label">Gold</p><p class="swatch-hex">#C9A24B</p></div>
       </div>
-      <p class="colors-note">90% core neutrals. 10% statement — disciplined so the brand feels premium, not loud.</p>
+      <p class="colors-note">92% core neutrals. 8% signal gold — reserved for data, not decoration.</p>
     </div>
   </section>
 
@@ -869,46 +971,50 @@
     document.getElementById('lab').classList.add('is-active');
   }
 
-  /* Lab tabs */
+  /* Lab tabs — spec-sheet test records */
   var TECH = {
-    emerald: {
+    cooling: {
       title:'Thermal Cooling',
-      intro:'An enhanced wicking technology designed to keep you cool while active — capitalizing on your own sweat to lower the temperature of the fabric.',
+      intro:'Sweat-activated endothermic cooling — the fabric pulls heat from the surface the moment moisture hits it.',
+      stat:{ value:24, unit:'%', label:'Faster Heat Dissipation' },
       points:[
-        'Capitalizes on sweat to lower the temperature of the material',
-        'Long-lasting cooling through a full session',
-        'Accelerates the wicking process to keep you dry',
-        'Next-to-skin comfort, even under load'
+        ['Mechanism','Sweat-activated endothermic cooling'],
+        ['Metric','-2.4°C surface temperature'],
+        ['Duration','Full session, no drop-off'],
+        ['Result','Zero overheating at peak load']
       ]
     },
-    sapphire: {
+    moisture: {
       title:'Moisture Transfer',
-      intro:'A directional weave that pulls moisture away from the skin the instant it forms, then spreads it wide across the fabric to evaporate fast.',
+      intro:'A directional capillary weave that pulls moisture away from skin the instant it forms, then spreads it wide to evaporate fast.',
+      stat:{ value:3, unit:'x', label:'Faster Moisture Pull' },
       points:[
-        'Pulls sweat away from skin in milliseconds, not minutes',
-        'Disperses moisture across a wider surface for faster evaporation',
-        'Stays dry through the hardest working sets',
-        'Zero clamminess, zero chafing'
+        ['Mechanism','Directional capillary weave'],
+        ['Metric','Dry within 6 min of peak sweat'],
+        ['Duration','Stays dry through full session'],
+        ['Result','Zero clamminess, zero chafing']
       ]
     },
-    amethyst: {
+    compression: {
       title:'Compression Support',
-      intro:'Graduated compression mapped to major muscle groups, engineered to reduce fatigue and support form when the load gets heavy.',
+      intro:'Graduated compression mapped to major muscle groups, reducing oscillation and supporting form when the load gets heavy.',
+      stat:{ value:18, unit:'%', label:'Less Muscle Oscillation' },
       points:[
-        'Graduated compression mapped to major muscle groups',
-        'Reduces fatigue-causing micro-vibration',
-        'Supports clean form under heavy load',
-        'Engineered four-way stretch, never restrictive'
+        ['Mechanism','Graduated compression knit map'],
+        ['Metric','18% reduction in oscillation'],
+        ['Duration','Sustained under full range of motion'],
+        ['Result','Cleaner form under heavy load']
       ]
     },
-    ruby: {
+    durability: {
       title:'Impact Durability',
-      intro:'Reinforced at every seam that takes real stress — built to survive rack pulls, rope climbs, and years under the bar, not one season.',
+      intro:'Reinforced at every seam that takes real stress — built to survive rack pulls, rope climbs, and years under the bar.',
+      stat:{ value:50000, unit:'+', label:'Flex Cycles Tested' },
       points:[
-        'Reinforced stitch density at every high-stress seam',
-        'Abrasion-resistant weave tested against rack and rope contact',
-        'Holds shape and color wash after wash',
-        'Built for years of training, not one cycle'
+        ['Mechanism','Reinforced high-stress seam stitching'],
+        ['Metric','50,000+ flex cycles tested'],
+        ['Duration','Multi-season wear, wash after wash'],
+        ['Result','Holds shape, holds color']
       ]
     }
   };
@@ -917,24 +1023,60 @@
   var labTitle = document.getElementById('labTitle');
   var labIntro = document.getElementById('labIntro');
   var labPoints = document.getElementById('labPoints');
-  var labSection = document.getElementById('lab');
+  var labStatValue = document.getElementById('labStatValue');
+  var labStatUnit = document.getElementById('labStatUnit');
+  var labStatLabel = document.getElementById('labStatLabel');
 
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
-      var jewel = tab.getAttribute('data-jewel');
+      var key = tab.getAttribute('data-tech');
       tabs.forEach(function(t){ t.classList.remove('is-active'); t.setAttribute('aria-selected','false'); });
       tab.classList.add('is-active');
       tab.setAttribute('aria-selected','true');
 
-      labSection.style.setProperty('--jewel', 'var(--' + jewel + ')');
-      labSection.style.setProperty('--jewel-dim', 'var(--' + jewel + '-dim)');
-
-      var data = TECH[jewel];
+      var data = TECH[key];
       labTitle.textContent = data.title;
       labIntro.textContent = data.intro;
-      labPoints.innerHTML = data.points.map(function(p){ return '<p class="lab-point">' + p + '</p>'; }).join('');
+      labPoints.innerHTML = data.points.map(function(p){
+        return '<div><dt>' + p[0] + '</dt><dd>' + p[1] + '</dd></div>';
+      }).join('');
+      labStatUnit.textContent = data.stat.unit;
+      labStatLabel.textContent = data.stat.label;
+      labStatValue.setAttribute('data-count', data.stat.value);
+      runCountUp(labStatValue);
     });
   });
+
+  /* Count-up: numeric readouts animate in like a lab instrument activating */
+  function runCountUp(el){
+    if(reduceMotion){ el.textContent = Number(el.getAttribute('data-count')).toLocaleString(); return; }
+    var target = Number(el.getAttribute('data-count')) || 0;
+    var duration = 1100;
+    var start = null;
+    function tick(ts){
+      if(start === null) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased).toLocaleString();
+      if(progress < 1){ requestAnimationFrame(tick); }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  var countEls = document.querySelectorAll('.count-up');
+  if('IntersectionObserver' in window){
+    var countObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          runCountUp(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold:.6 });
+    countEls.forEach(function(el){ countObserver.observe(el); });
+  } else {
+    countEls.forEach(function(el){ el.textContent = el.getAttribute('data-count'); });
+  }
 })();
 </script>
 
